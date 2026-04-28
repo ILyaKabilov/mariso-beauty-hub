@@ -42,7 +42,7 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
           <span
             className="absolute left-0 rounded-full border-2 animate-mirror-spin"
             style={{
-              top: (fontSize - mirrorSize) / 2,
+              top: fontSize - mirrorSize,
               width: mirrorSize,
               height: mirrorSize,
               borderColor: "hsl(var(--primary-foreground))",
@@ -55,7 +55,7 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              top: (fontSize - mirrorSize) / 2 + mirrorSize - 1,
+              top: fontSize - 1,
               width: poleWidth,
               height: poleHeight,
               background: "hsl(var(--primary-foreground))",
@@ -65,7 +65,7 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              top: (fontSize - mirrorSize) / 2 + mirrorSize + poleHeight - 1,
+              top: fontSize + poleHeight - 1,
               width: baseWidth,
               height: Math.max(1.5, h * 0.035),
               background: "hsl(var(--primary-foreground))",
