@@ -8,6 +8,11 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
   const h = height;
   const fontSize = h * 0.52;
   const mirrorSize = h * 0.42;
+  // Offset so mirror disc sits aligned with other letters; stand drops below baseline
+  const mirrorTop = h * 0.22;
+  const poleHeight = h * 0.1;
+  const poleWidth = Math.max(1.5, h * 0.035);
+  const baseWidth = mirrorSize * 0.55;
 
   return (
     <div
