@@ -34,14 +34,15 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
           className="relative inline-block ml-[2px]"
           style={{
             width: mirrorSize,
-            height: mirrorSize + h * 0.22,
+            height: fontSize + poleHeight + h * 0.04,
           }}
           aria-hidden
         >
-          {/* Mirror disc */}
+          {/* Mirror disc — aligned with other letters */}
           <span
-            className="absolute left-0 top-0 rounded-full border-2 animate-mirror-spin"
+            className="absolute left-0 rounded-full border-2 animate-mirror-spin"
             style={{
+              top: (fontSize - mirrorSize) / 2,
               width: mirrorSize,
               height: mirrorSize,
               borderColor: "hsl(var(--primary-foreground))",
@@ -50,13 +51,13 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
               transformOrigin: "50% 50%",
             }}
           />
-          {/* Stand pole */}
+          {/* Stand pole — drops below baseline like descender of "у" */}
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              top: mirrorSize - 2,
-              width: Math.max(2, h * 0.05),
-              height: h * 0.16,
+              top: (fontSize - mirrorSize) / 2 + mirrorSize - 1,
+              width: poleWidth,
+              height: poleHeight,
               background: "hsl(var(--primary-foreground))",
             }}
           />
@@ -64,9 +65,9 @@ export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              top: mirrorSize + h * 0.14,
-              width: mirrorSize * 0.75,
-              height: Math.max(2, h * 0.05),
+              top: (fontSize - mirrorSize) / 2 + mirrorSize + poleHeight - 1,
+              width: baseWidth,
+              height: Math.max(1.5, h * 0.035),
               background: "hsl(var(--primary-foreground))",
             }}
           />
