@@ -59,16 +59,15 @@ export const HomePage = () => {
             <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">MariSo</div>
             <h2 className="font-display text-4xl sm:text-5xl leading-tight mb-6">{t("home.aboutTitle")}</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">{t("home.aboutText")}</p>
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
-                { n: "12+", l: t("home.stat1") },
-                { n: "8000+", l: t("home.stat2") },
-                { n: "10", l: t("home.stat3") },
-                { n: "30+", l: t("home.stat4") },
+                { n: t("home.val1Title"), l: t("home.val1Text") },
+                { n: t("home.val2Title"), l: t("home.val2Text") },
+                { n: t("home.val3Title"), l: t("home.val3Text") },
               ].map((s, i) => (
-                <div key={i} className="text-center sm:text-left">
-                  <div className="font-display text-4xl text-primary">{s.n}</div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{s.l}</div>
+                <div key={i} className="border-l-2 border-gold pl-4">
+                  <div className="font-display text-2xl text-primary leading-tight">{s.n}</div>
+                  <div className="text-sm text-muted-foreground mt-2 leading-relaxed">{s.l}</div>
                 </div>
               ))}
             </div>
