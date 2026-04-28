@@ -7,7 +7,7 @@ import { useI18n, Lang } from "@/i18n/i18n";
 export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
   const h = height;
   const fontSize = h * 0.52;
-  const mirrorSize = h * 0.6;
+  const mirrorSize = h * 0.42;
 
   return (
     <div
