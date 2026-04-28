@@ -1,46 +1,67 @@
 import { useI18n, Lang } from "@/i18n/i18n";
 
-export const Logo = ({ size = 44 }: { size?: number }) => {
+/**
+ * MariSo logo — horizontal plate on red background.
+ * Last "O" is a spinning round mirror on a stand.
+ */
+export const Logo = ({ height = 44 }: { height?: number; size?: number }) => {
+  const h = height;
+  const fontSize = h * 0.52;
+  const mirrorSize = h * 0.6;
+
   return (
     <div
-      className="flex items-center justify-center rounded-xl shadow-gold"
+      className="flex items-center justify-center rounded-xl shadow-gold px-4"
       style={{
-        width: size,
-        height: size,
+        height: h,
+        minWidth: h * 3.2,
         background: "hsl(var(--primary))",
       }}
       aria-label="MariSo logo"
     >
-      <div className="flex items-baseline text-primary-foreground font-display font-semibold leading-none" style={{ fontSize: size * 0.44 }}>
+      <div
+        className="flex items-center text-primary-foreground font-display font-semibold leading-none tracking-wide"
+        style={{ fontSize }}
+      >
         <span>MariS</span>
+        {/* Mirror "O" */}
         <span
-          className="inline-block animate-mirror-spin ml-[1px]"
+          className="relative inline-block ml-[2px]"
           style={{
-            width: size * 0.28,
-            height: size * 0.28,
-            position: "relative",
+            width: mirrorSize,
+            height: mirrorSize + h * 0.22,
           }}
           aria-hidden
         >
+          {/* Mirror disc */}
           <span
-            className="absolute inset-0 rounded-full border-2"
-            style={{ borderColor: "hsl(var(--primary-foreground))" }}
+            className="absolute left-0 top-0 rounded-full border-2 animate-mirror-spin"
+            style={{
+              width: mirrorSize,
+              height: mirrorSize,
+              borderColor: "hsl(var(--primary-foreground))",
+              background:
+                "radial-gradient(circle at 35% 30%, hsla(0,0%,100%,.4), hsla(0,0%,100%,0) 55%), hsl(var(--primary))",
+              transformOrigin: "50% 50%",
+            }}
           />
+          {/* Stand pole */}
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              bottom: -size * 0.12,
-              width: size * 0.04,
-              height: size * 0.12,
+              top: mirrorSize - 2,
+              width: Math.max(2, h * 0.05),
+              height: h * 0.16,
               background: "hsl(var(--primary-foreground))",
             }}
           />
+          {/* Stand base */}
           <span
             className="absolute left-1/2 -translate-x-1/2 rounded-sm"
             style={{
-              bottom: -size * 0.16,
-              width: size * 0.14,
-              height: size * 0.03,
+              top: mirrorSize + h * 0.14,
+              width: mirrorSize * 0.75,
+              height: Math.max(2, h * 0.05),
               background: "hsl(var(--primary-foreground))",
             }}
           />

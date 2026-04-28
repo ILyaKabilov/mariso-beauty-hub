@@ -20,12 +20,28 @@ function validate(b: any): { ok: true; data: BookingPayload } | { ok: false; err
   if (!b || typeof b !== "object") return { ok: false, error: "Invalid body" };
   const fields = ["name", "phone", "service", "master", "date", "time"];
   for (const f of fields) {
-    if (typeof b[f] !== "string" || !b[f].trim()) return { ok: false, error: `Missing field: ${f}` };
-    if (b[f].length > 300) return { ok: false, error: `Field too long: ${f}` };
+    const v = b[f];
+    if (typeof v !== "string" || !v.trim()) return { ok: false, error: `Missing field: ${f}` };
+    if (v.length > 300) return { ok: false, error: `Field too long: ${f}` };
   }
-  if (b.comment && (typeof b.comment !== "string" || b.comment.length > 1000))
+  // comment & lang are optional
+  if (b.comment != null && (typeof b.comment !== "string" || b.comment.length > 1000)) {
     return { ok: false, error: "Invalid comment" };
-  return { ok: true, data: b as BookingPayload };
+  }
+  if (b.lang != null && (typeof b.lang !== "string" || b.lang.length > 8)) {
+    return { ok: false, error: "Invalid lang" };
+  }
+  const data: BookingPayload = {
+    name: b.name.trim(),
+    phone: b.phone.trim(),
+    service: b.service.trim(),
+    master: b.master.trim(),
+    date: b.date.trim(),
+    time: b.time.trim(),
+    comment: typeof b.comment === "string" ? b.comment.trim() : "",
+    lang: typeof b.lang === "string" ? b.lang : undefined,
+  };
+  return { ok: true, data };
 }
 
 function escapeHtml(s: string) {

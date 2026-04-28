@@ -10,13 +10,10 @@ export const Footer = () => {
       <div className="container mx-auto py-16">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3">
-              <Logo size={48} />
-              <div>
-                <div className="font-display text-2xl">MariSo</div>
-                <div className="text-xs uppercase tracking-[0.2em] opacity-70 mt-1">Beauty · Tashkent</div>
-              </div>
+            <div className="inline-block">
+              <Logo height={56} />
             </div>
+            <div className="text-xs uppercase tracking-[0.25em] opacity-70 mt-4">Beauty · Tashkent</div>
             <p className="mt-6 max-w-md font-display text-xl italic opacity-80">
               {t("footer.slogan")}
             </p>
