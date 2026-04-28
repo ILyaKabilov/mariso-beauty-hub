@@ -22,10 +22,12 @@ const translations: Translations = {
 
     "home.aboutTitle": "О MariSo",
     "home.aboutText": "MariSo — это пространство, где каждая деталь создана для вашего преображения. Мы объединяем мастерство, современные техники и премиальные материалы, чтобы подарить вам безупречный результат и моменты истинного удовольствия.",
-    "home.stat1": "лет опыта",
-    "home.stat2": "счастливых клиентов",
-    "home.stat3": "мастеров",
-    "home.stat4": "услуг",
+    "home.val1Title": "Опытные мастера",
+    "home.val1Text": "Сертифицированные специалисты с международной подготовкой",
+    "home.val2Title": "Премиальные материалы",
+    "home.val2Text": "Работаем только с проверенными брендами профессиональной косметики",
+    "home.val3Title": "Безупречная гигиена",
+    "home.val3Text": "Стерилизация инструментов и одноразовые расходники на каждой процедуре",
 
     "home.servicesTitle": "Наши направления",
     "home.servicesSubtitle": "Полный спектр услуг красоты под одной крышей",
@@ -104,10 +106,12 @@ const translations: Translations = {
 
     "home.aboutTitle": "MariSo haqida",
     "home.aboutText": "MariSo — har bir detali sizning o'zgarishingiz uchun yaratilgan makon. Biz mukammal natija va haqiqiy zavq daqiqalarini taqdim etish uchun mahorat, zamonaviy texnikalar va premium materiallarni birlashtiramiz.",
-    "home.stat1": "yillik tajriba",
-    "home.stat2": "baxtli mijozlar",
-    "home.stat3": "ustalar",
-    "home.stat4": "xizmatlar",
+    "home.val1Title": "Tajribali ustalar",
+    "home.val1Text": "Xalqaro tayyorgarlikdan o'tgan sertifikatlangan mutaxassislar",
+    "home.val2Title": "Premium materiallar",
+    "home.val2Text": "Faqat ishonchli professional kosmetika brendlari bilan ishlaymiz",
+    "home.val3Title": "Mukammal gigiyena",
+    "home.val3Text": "Har bir muolajada asboblarni sterilizatsiya va bir martali materiallar",
 
     "home.servicesTitle": "Yo'nalishlarimiz",
     "home.servicesSubtitle": "Bir tom ostida to'liq go'zallik xizmatlari",
