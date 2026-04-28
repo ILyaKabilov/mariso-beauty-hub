@@ -75,13 +75,13 @@ export const BookingPage = () => {
       const service = allServices.find((s) => s.id === serviceId)!;
       const { data, error } = await supabase.functions.invoke("send-booking", {
         body: {
-          name,
-          phone,
+          name: name.trim(),
+          phone: phone.trim(),
           service: service.name.ru,
           master: master.name.ru,
           date: selectedDate,
           time: selectedTime,
-          comment,
+          comment: (comment || "").trim(),
           lang,
         },
       });
@@ -192,10 +192,6 @@ export const BookingPage = () => {
                   })}
                 </div>
 
-                <div className="flex items-center gap-5 mt-5 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-accent" />{t("booking.free")}</span>
-                  <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />{t("booking.taken")}</span>
-                </div>
               </div>
             </div>
 
