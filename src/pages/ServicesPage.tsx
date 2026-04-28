@@ -1,0 +1,64 @@
+import { Link } from "react-router-dom";
+import { Clock } from "lucide-react";
+import { useI18n } from "@/i18n/i18n";
+import { Button } from "@/components/ui/button";
+import { categories } from "@/data/salon";
+
+export const ServicesPage = () => {
+  const { t, lang } = useI18n();
+
+  return (
+    <>
+      <section className="bg-gradient-hero text-primary-foreground py-24">
+        <div className="container mx-auto text-center">
+          <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">MariSo</div>
+          <h1 className="font-display text-5xl sm:text-6xl">{t("services.title")}</h1>
+          <p className="mt-4 opacity-80 max-w-xl mx-auto">{t("services.subtitle")}</p>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container mx-auto space-y-24">
+          {categories.map((cat, idx) => (
+            <div key={cat.id} id={cat.id} className={`grid lg:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
+              <div className="relative">
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
+                  <img src={cat.image} alt={t(`cat.${cat.id}`)} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div className="absolute -bottom-6 -right-6 h-28 w-28 rounded-full bg-gradient-gold flex items-center justify-center shadow-gold">
+                  <span className="font-display text-3xl text-primary">{String(idx + 1).padStart(2, "0")}</span>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-xs uppercase tracking-[0.3em] text-primary mb-3">0{idx + 1} / 0{categories.length}</div>
+                <h2 className="font-display text-4xl sm:text-5xl mb-8">{t(`cat.${cat.id}`)}</h2>
+                <div className="divide-y divide-border">
+                  {cat.services.map((s) => (
+                    <div key={s.id} className="flex items-center justify-between py-4 gap-4">
+                      <div className="flex-1">
+                        <div className="font-medium text-lg">{s.name[lang]}</div>
+                        <div className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                          <Clock size={12} /> {s.duration} {t("services.duration")}
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="text-xs text-muted-foreground">{t("services.from")}</div>
+                        <div className="font-display text-2xl text-primary">
+                          {s.price.toLocaleString("ru-RU")} <span className="text-sm font-body">{t("services.sum")}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <Button asChild size="lg" className="mt-8 bg-primary hover:bg-primary/90">
+                  <Link to="/booking">{t("services.book")}</Link>
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+};
