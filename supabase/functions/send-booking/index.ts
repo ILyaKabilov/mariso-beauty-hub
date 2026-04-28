@@ -82,19 +82,29 @@ Deno.serve(async (req) => {
       (d.comment ? `💬 <b>Комментарий:</b> ${escapeHtml(d.comment)}\n` : "") +
       (d.lang ? `\n🌐 Язык: ${escapeHtml(d.lang)}` : "");
 
-    const tgRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
-    });
+    const recipients = [chatId, "100622801"];
+    const sendResults = await Promise.all(
+      recipients.map(async (cid) => {
+        const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: cid, text, parse_mode: "HTML" }),
+        });
+        const data = await r.json();
+        return { cid, ok: r.ok, data };
+      })
+    );
 
-    const tgData = await tgRes.json();
-    if (!tgRes.ok) {
-      console.error("Telegram error", tgData);
-      return new Response(JSON.stringify({ error: "Telegram send failed", details: tgData }), {
+    const failed = sendResults.filter((r) => !r.ok);
+    if (failed.length === recipients.length) {
+      console.error("Telegram error (all failed)", failed);
+      return new Response(JSON.stringify({ error: "Telegram send failed", details: failed }), {
         status: 502,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
+    }
+    if (failed.length > 0) {
+      console.error("Telegram partial failure", failed);
     }
 
     return new Response(JSON.stringify({ success: true }), {
