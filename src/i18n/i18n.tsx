@@ -32,6 +32,7 @@ const translations: Translations = {
     "home.servicesTitle": "Наши направления",
     "home.servicesSubtitle": "Полный спектр услуг красоты под одной крышей",
     "home.viewAll": "Смотреть все услуги",
+    "home.viewAllMasters": "Смотреть всех мастеров",
 
     "services.title": "Услуги и цены",
     "services.subtitle": "Прозрачные цены, безупречное качество",
@@ -83,7 +84,7 @@ const translations: Translations = {
     "contacts.hoursVal": "Ежедневно с 9:00 до 21:00",
 
     "footer.rights": "Все права защищены",
-    "footer.slogan": "Красота, которой вы заслуживаете",
+    "footer.slogan": "Красота, которую вы заслуживаете",
 
     "months.0": "Январь", "months.1": "Февраль", "months.2": "Март", "months.3": "Апрель",
     "months.4": "Май", "months.5": "Июнь", "months.6": "Июль", "months.7": "Август",
@@ -116,6 +117,7 @@ const translations: Translations = {
     "home.servicesTitle": "Yo'nalishlarimiz",
     "home.servicesSubtitle": "Bir tom ostida to'liq go'zallik xizmatlari",
     "home.viewAll": "Barcha xizmatlarni ko'rish",
+    "home.viewAllMasters": "Barcha ustalarni ko'rish",
 
     "services.title": "Xizmatlar va narxlar",
     "services.subtitle": "Shaffof narxlar, mukammal sifat",

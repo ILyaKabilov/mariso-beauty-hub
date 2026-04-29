@@ -1,19 +1,28 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Scissors, Flower2, Hand } from "lucide-react";
+import { ArrowRight, Sparkles, Scissors, Flower2, Hand, Loader2 } from "lucide-react";
 import { useI18n } from "@/i18n/i18n";
 import { Button } from "@/components/ui/button";
-import { categories, masters } from "@/data/salon";
+import { categories as staticCategories } from "@/data/salon";
+import { useMasters, useCategories } from "@/hooks/useSupabaseData";
 import heroImg from "@/assets/hero-salon.jpg";
 
 export const HomePage = () => {
   const { t, lang } = useI18n();
+  const { data: masters, isLoading: mastersLoading } = useMasters();
+  const { data: categories, isLoading: categoriesLoading } = useCategories();
 
-  const iconMap: Record<string, any> = {
-    hair: Scissors,
-    manicure: Hand,
-    pedicure: Flower2,
-    massage: Sparkles,
-    other: Sparkles,
+  if (mastersLoading || categoriesLoading) {
+    return <div className="min-h-screen flex items-center justify-center"><Loader2 className="animate-spin w-10 h-10 text-primary" /></div>;
+  }
+
+  const getCategoryImage = (cat: any) => {
+    if (cat.image) return cat.image;
+    const name = (cat.name_ru || "").toLowerCase();
+    if (name.includes('стриж') || name.includes('уклад')) return staticCategories[0].image;
+    if (name.includes('маник')) return staticCategories[1].image;
+    if (name.includes('педик')) return staticCategories[2].image;
+    if (name.includes('массаж')) return staticCategories[3].image;
+    return staticCategories[4].image; // fallback/other
   };
 
   return (
@@ -73,8 +82,8 @@ export const HomePage = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <img src={categories[0].image} alt="hair" className="w-full h-72 object-cover rounded-2xl shadow-soft" loading="lazy" />
-            <img src={categories[1].image} alt="manicure" className="w-full h-72 object-cover rounded-2xl shadow-soft mt-10" loading="lazy" />
+            <img src={staticCategories[0].image} alt="hair" className="w-full h-72 object-cover rounded-2xl shadow-soft" loading="lazy" />
+            <img src={staticCategories[1].image} alt="manicure" className="w-full h-72 object-cover rounded-2xl shadow-soft mt-10" loading="lazy" />
           </div>
         </div>
       </section>
@@ -89,8 +98,8 @@ export const HomePage = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.slice(0, 4).map((cat) => {
-              const Icon = iconMap[cat.id];
+            {(categories || []).slice(0, 4).map((cat) => {
+              const bgImage = getCategoryImage(cat);
               return (
                 <Link
                   key={cat.id}
@@ -99,16 +108,15 @@ export const HomePage = () => {
                 >
                   <div className="aspect-[3/4] overflow-hidden">
                     <img
-                      src={cat.image}
-                      alt={t(`cat.${cat.id}`)}
+                      src={bgImage}
+                      alt={lang === 'uz' ? cat.name_uz : cat.name_ru}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[900ms]"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
                   </div>
                   <div className="absolute inset-x-0 bottom-0 p-6 text-primary-foreground">
-                    <Icon size={24} className="text-gold mb-3" />
-                    <h3 className="font-display text-2xl">{t(`cat.${cat.id}`)}</h3>
+                    <h3 className="font-display text-2xl">{lang === 'uz' ? cat.name_uz : cat.name_ru}</h3>
                     <div className="flex items-center gap-2 text-xs uppercase tracking-wider mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
                       {t("services.book")} <ArrowRight size={14} />
                     </div>
@@ -136,18 +144,18 @@ export const HomePage = () => {
               <h2 className="font-display text-4xl sm:text-5xl">{t("masters.title")}</h2>
             </div>
             <Button asChild variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 w-fit">
-              <Link to="/masters">{t("home.viewAll")} <ArrowRight size={16} className="ml-2" /></Link>
+              <Link to="/masters">{t("home.viewAllMasters") || "Смотреть всех мастеров"} <ArrowRight size={16} className="ml-2" /></Link>
             </Button>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {masters.map((m) => (
+            {(masters || []).slice(0, 4).map((m) => (
               <div key={m.id} className="group">
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-4">
-                  <img src={m.image} alt={m.name[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                  <img src={m.image} alt={lang === 'uz' ? m.name_uz : m.name_ru} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
-                <h3 className="font-display text-2xl">{m.name[lang]}</h3>
-                <div className="text-sm text-gold mt-1">{m.role[lang]}</div>
+                <h3 className="font-display text-2xl">{lang === 'uz' ? m.name_uz : m.name_ru}</h3>
+                <div className="text-sm text-gold mt-1">{lang === 'uz' ? m.role_uz : m.role_ru}</div>
               </div>
             ))}
           </div>

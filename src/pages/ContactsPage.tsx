@@ -1,16 +1,23 @@
-import { MapPin, Phone, Clock, Instagram, Mail } from "lucide-react";
+import { useEffect } from "react";
+import { MapPin, Phone, Clock, Instagram, MessageCircle } from "lucide-react";
 import { useI18n } from "@/i18n/i18n";
+import { useContacts } from "@/hooks/useSupabaseData";
 
 export const ContactsPage = () => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const { data: contacts } = useContacts();
 
   const items = [
-    { Icon: MapPin, label: t("contacts.address"), value: t("contacts.addressVal") },
-    { Icon: Phone, label: t("contacts.phone"), value: "+998 71 200 00 00" },
-    { Icon: Clock, label: t("contacts.hours"), value: t("contacts.hoursVal") },
-    { Icon: Mail, label: "Email", value: "hello@mariso.uz" },
-    { Icon: Instagram, label: "Instagram", value: "@mariso.tashkent" },
+    { Icon: MapPin, label: t("contacts.address"), value: contacts ? (lang === 'uz' ? contacts.address_uz : contacts.address_ru) : t("contacts.addressVal") },
+    { Icon: Phone, label: t("contacts.phone"), value: contacts?.phone || "+998 71 200 00 00" },
+    { Icon: Clock, label: t("contacts.hours"), value: contacts ? (lang === 'uz' ? contacts.working_hours_uz : contacts.working_hours_ru) : t("contacts.hoursVal") },
+    { Icon: Instagram, label: "Instagram", value: contacts?.instagram || "@mariso.tashkent" },
+    { Icon: MessageCircle, label: "Telegram", value: contacts?.telegram || "@mariso_bot" },
   ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -41,7 +48,7 @@ export const ContactsPage = () => {
           <div className="rounded-3xl overflow-hidden shadow-elegant h-[500px] lg:h-auto">
             <iframe
               title="MariSo Tashkent map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=69.24%2C41.29%2C69.32%2C41.33&layer=mapnik&marker=41.311%2C69.279"
+              src={contacts?.map_url || "https://www.openstreetmap.org/export/embed.html?bbox=69.24%2C41.29%2C69.32%2C41.33&layer=mapnik&marker=41.311%2C69.279"}
               className="w-full h-full min-h-[400px] border-0"
               loading="lazy"
             />
