@@ -41,7 +41,7 @@ export const HomePage = () => {
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               {t("hero.tagline")}
             </div>
-            <h1 className="font-display text-4xl sm:text-6xl lg:text-8xl leading-[1.05] whitespace-pre-line break-words hyphens-auto">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] whitespace-pre-line">
               {t("hero.title")}
             </h1>
             <p className="mt-8 text-lg sm:text-xl max-w-xl opacity-90 leading-relaxed">
