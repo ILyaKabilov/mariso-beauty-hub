@@ -24,13 +24,13 @@ export const MastersPage = () => {
       <section className="bg-gradient-hero text-primary-foreground py-24">
         <div className="container mx-auto text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">MariSo</div>
-          <h1 className="font-display text-5xl sm:text-6xl">{t("masters.title")}</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl">{t("masters.title")}</h1>
           <p className="mt-4 opacity-80 max-w-xl mx-auto">{t("masters.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="container mx-auto grid md:grid-cols-2 gap-10">
+        <div className="container mx-auto grid md:grid-cols-2 gap-6 sm:gap-10">
           {masters?.map((m, i) => {
             const masterServiceIds = masterServices?.filter(ms => ms.master_id === m.id).map(ms => ms.service_id) || [];
             // Assuming we'd fetch actual service category_id's later, but for now we skip tags or just show "Master"
@@ -39,10 +39,10 @@ export const MastersPage = () => {
               <div className="sm:w-2/5 aspect-square sm:aspect-auto overflow-hidden">
                 <img src={m.image} alt={lang === 'uz' ? m.name_uz : m.name_ru} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
               </div>
-              <div className="p-8 flex-1 flex flex-col justify-between">
+              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="text-xs uppercase tracking-[0.25em] text-gold mb-2">0{i + 1}</div>
-                  <h2 className="font-display text-3xl">{lang === 'uz' ? m.name_uz : m.name_ru}</h2>
+                  <h2 className="font-display text-2xl sm:text-3xl">{lang === 'uz' ? m.name_uz : m.name_ru}</h2>
                   <div className="text-primary font-medium text-sm mt-1">{lang === 'uz' ? m.role_uz : m.role_ru}</div>
                   <div className="text-muted-foreground text-xs mt-1">
                     {m.experience} {t("masters.experience")}

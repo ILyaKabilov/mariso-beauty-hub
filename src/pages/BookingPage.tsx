@@ -239,13 +239,13 @@ export const BookingPage = () => {
       <section className="bg-gradient-hero text-primary-foreground py-20">
         <div className="container mx-auto text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">MariSo</div>
-          <h1 className="font-display text-5xl sm:text-6xl">{t("booking.title")}</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl">{t("booking.title")}</h1>
           <p className="mt-4 opacity-80 max-w-xl mx-auto">{t("booking.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-16">
-        <div className="container mx-auto grid lg:grid-cols-5 gap-10">
+        <div className="container mx-auto grid lg:grid-cols-5 gap-8 lg:gap-10">
           {/* Left: Master + Services + Calendar */}
           <div className="lg:col-span-3 space-y-10">
             
@@ -337,11 +337,11 @@ export const BookingPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-card rounded-2xl p-5 shadow-soft border border-border">
-                    <div className="grid grid-cols-7 gap-1 text-center text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                  <div className="bg-card rounded-2xl p-3 sm:p-5 shadow-soft border border-border">
+                    <div className="grid grid-cols-7 gap-0.5 sm:gap-1 text-center text-xs uppercase tracking-wider text-muted-foreground mb-2">
                       {dayNames.map((d) => <div key={d} className="py-2">{t(d)}</div>)}
                     </div>
-                    <div className="grid grid-cols-7 gap-1">
+                    <div className="grid grid-cols-7 gap-0.5 sm:gap-1">
                       {calendarDays.map((d, i) => {
                         if (!d) return <div key={i} />;
                         const iso = toISODate(d);
@@ -382,7 +382,7 @@ export const BookingPage = () => {
                       {t("booking.noSlots")}
                     </div>
                   ) : (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1.5 sm:gap-2">
                       {availableSlots.map((slot) => {
                         const selected = selectedTime === slot.time;
                         return (
@@ -391,7 +391,7 @@ export const BookingPage = () => {
                             key={slot.time}
                             disabled={slot.busy}
                             onClick={() => setSelectedTime(slot.time)}
-                            className={`py-3 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-1 border ${
+                            className={`py-2 sm:py-3 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-1 border ${
                               slot.busy
                                 ? "bg-muted text-muted-foreground/50 line-through cursor-not-allowed border-transparent"
                                 : selected
@@ -415,7 +415,7 @@ export const BookingPage = () => {
           <div className="lg:col-span-2">
             <form
               onSubmit={handleSubmit}
-              className="bg-card p-8 rounded-3xl shadow-elegant border border-border lg:sticky lg:top-28"
+              className="bg-card p-6 md:p-8 rounded-3xl shadow-elegant border border-border lg:sticky lg:top-28"
             >
               <h2 className="font-display text-3xl mb-1">{t("booking.title")}</h2>
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-6">MariSo · Tashkent</p>

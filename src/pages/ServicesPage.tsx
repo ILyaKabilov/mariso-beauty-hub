@@ -36,29 +36,29 @@ export const ServicesPage = () => {
       <section className="bg-gradient-hero text-primary-foreground py-24">
         <div className="container mx-auto text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">MariSo</div>
-          <h1 className="font-display text-5xl sm:text-6xl">{t("services.title")}</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl">{t("services.title")}</h1>
           <p className="mt-4 opacity-80 max-w-xl mx-auto">{t("services.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="container mx-auto space-y-24">
+        <div className="container mx-auto space-y-16 sm:space-y-24">
           {grouped.map((group, idx) => {
             const bgImage = getCategoryImage(group);
             return (
-            <div key={group.id} className={`grid lg:grid-cols-2 gap-12 items-center ${idx % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
+            <div key={group.id} className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${idx % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
               <div className="relative">
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
                   <img src={bgImage} alt={lang === 'uz' ? group.name_uz : group.name_ru} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <div className="absolute -bottom-6 -right-6 h-28 w-28 rounded-full bg-gradient-gold flex items-center justify-center shadow-gold">
-                  <span className="font-display text-3xl text-primary">{String(idx + 1).padStart(2, "0")}</span>
+                <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 h-20 w-20 sm:h-28 sm:w-28 rounded-full bg-gradient-gold flex items-center justify-center shadow-gold">
+                  <span className="font-display text-2xl sm:text-3xl text-primary">{String(idx + 1).padStart(2, "0")}</span>
                 </div>
               </div>
 
               <div>
                 <div className="text-xs uppercase tracking-[0.3em] text-primary mb-3">0{idx + 1} / 0{grouped.length}</div>
-                <h2 className="font-display text-4xl sm:text-5xl mb-8">{lang === 'uz' ? group.name_uz : group.name_ru}</h2>
+                <h2 className="font-display text-3xl sm:text-4xl mb-6 sm:mb-8">{lang === 'uz' ? group.name_uz : group.name_ru}</h2>
                 <div className="divide-y divide-border">
                   {group.services.map((s) => (
                     <div key={s.id} className="flex items-center justify-between py-4 gap-4">

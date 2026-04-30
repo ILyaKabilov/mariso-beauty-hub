@@ -24,16 +24,16 @@ export const ContactsPage = () => {
       <section className="bg-gradient-hero text-primary-foreground py-24">
         <div className="container mx-auto text-center">
           <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">MariSo</div>
-          <h1 className="font-display text-5xl sm:text-6xl">{t("contacts.title")}</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl">{t("contacts.title")}</h1>
           <p className="mt-4 opacity-80 max-w-xl mx-auto">{t("contacts.subtitle")}</p>
         </div>
       </section>
 
       <section className="py-20">
-        <div className="container mx-auto grid lg:grid-cols-2 gap-12">
-          <div className="space-y-5">
+        <div className="container mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="space-y-3 sm:space-y-5">
             {items.map(({ Icon, label, value }, i) => (
-              <div key={i} className="flex items-start gap-5 p-6 rounded-2xl bg-card shadow-soft hover:shadow-elegant transition-shadow">
+              <div key={i} className="flex items-start gap-4 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-card shadow-soft hover:shadow-elegant transition-shadow">
                 <div className="h-12 w-12 rounded-xl bg-gradient-gold flex items-center justify-center shrink-0 shadow-gold">
                   <Icon size={22} className="text-primary" />
                 </div>

@@ -41,7 +41,7 @@ export const HomePage = () => {
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               {t("hero.tagline")}
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl leading-[1.05] whitespace-pre-line">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-8xl leading-[1.05] whitespace-pre-line break-words hyphens-auto">
               {t("hero.title")}
             </h1>
             <p className="mt-8 text-lg sm:text-xl max-w-xl opacity-90 leading-relaxed">
@@ -66,7 +66,7 @@ export const HomePage = () => {
         <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">MariSo</div>
-            <h2 className="font-display text-4xl sm:text-5xl leading-tight mb-6">{t("home.aboutTitle")}</h2>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight mb-6">{t("home.aboutTitle")}</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">{t("home.aboutText")}</p>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
@@ -93,7 +93,7 @@ export const HomePage = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">{t("nav.services")}</div>
-            <h2 className="font-display text-4xl sm:text-5xl">{t("home.servicesTitle")}</h2>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">{t("home.servicesTitle")}</h2>
             <p className="text-muted-foreground mt-4 max-w-xl mx-auto">{t("home.servicesSubtitle")}</p>
           </div>
 
@@ -141,7 +141,7 @@ export const HomePage = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <div>
               <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">{t("nav.masters")}</div>
-              <h2 className="font-display text-4xl sm:text-5xl">{t("masters.title")}</h2>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl">{t("masters.title")}</h2>
             </div>
             <Button asChild variant="outline" className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 w-fit">
               <Link to="/masters">{t("home.viewAllMasters") || "Смотреть всех мастеров"} <ArrowRight size={16} className="ml-2" /></Link>
@@ -168,7 +168,7 @@ export const HomePage = () => {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-hero p-12 md:p-20 text-center text-primary-foreground shadow-elegant">
             <Sparkles className="absolute top-8 left-8 text-gold opacity-30" size={48} />
             <Sparkles className="absolute bottom-8 right-8 text-gold opacity-30" size={64} />
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl max-w-3xl mx-auto leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mx-auto leading-tight">
               {t("footer.slogan")}
             </h2>
             <Button asChild size="lg" className="mt-10 bg-gradient-gold text-primary hover:opacity-90 h-14 px-10 text-base">
